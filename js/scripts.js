@@ -1,3 +1,4 @@
+// create answers for the magic ball
 const positive_answer_list = ["It is certain", "It is decidedly so", "Without a doubt", "As I see it, yes!", "Outlook good", "Signs point to yes"];
 const neutral_answer_list = ["Ask again later", "Better not tell you now", "Can't see anything right now", "Concentrate and ask again"];
 const negative_answer_list = ["Don't count on it", "Definite no", "Very doutful", "My sources say no", "Outlook not so good"];
