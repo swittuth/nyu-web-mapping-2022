@@ -2,11 +2,15 @@ body {
   background-color: #527b8e;
 }
 
-h1 {
+h3 {
   text-align: center;
   color: black;
   font-size: 25px;
   font-family: Sans-Serif;
+}
+
+p {
+  text-align: center;
 }
 
 #submitted-question {
