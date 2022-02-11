@@ -8,16 +8,26 @@
             <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
             <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
             <style>
-                body {
+                html, body {
                     margin: 0;
                     padding: 0;
+                }
+
+                .container{
+                    display: flex;
+                }
+
+                .sidebar {
+                    width: 400px;
+                    height: 100%;
                 }
 
                 #map {
                     position: absolute;
                     top: 0;
                     bottom: 0;
-                    width: 100%;
+                    width: 500px;
+                    height: 500px;
                 }
 
                 .marker {
@@ -41,6 +51,12 @@
         </head>
         <body>
 
+            <div class = "container">
+                <div class = "sidebar">
+
+                </div>
+            </div>
+
         <div id='map'></div>
 
             <script>
@@ -48,13 +64,14 @@
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic3dpdHR1dGgiLCJhIjoiY2t6aGZzcjZ1MDNucjJ1bnlpbGVjMHozNSJ9.wP4jf_xQ5-IDXtzRc2ECpA';
 
                 const map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/light-v10',
-                center: [-96, 37.8],
-                zoom: 3
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/dark-v10',
+                    center: [-73.997442,40.730848],
+                    zoom: 15, // zoom out till 17-19 which gets you to street level 
                 });
 
                 // code from the next step will go here!
+
                 const geojson = {
                     type: 'FeatureCollection',
                     features: [
@@ -62,11 +79,11 @@
                         type: 'Feature',
                         geometry: {
                             type: 'Point',
-                            coordinates: [-77.032, 38.913]
+                            coordinates: [-73.997442,40.730848] // longitute, lattitude
                         },
                         properties: {
                             title: 'Mapbox',
-                            description: 'Washington, D.C.'
+                            description: 'Washington Square Park Water Fountain.'
                         }
                         },
                         {
@@ -90,8 +107,34 @@
                 el.className = 'marker';
 
                 // make a marker for each feature and add to the map
-                new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`)).addTo(map);
+                new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({ offset: 20 }).setHTML(`<h3>${feature.properties.description}</h3>`)).addTo(map);
                 }
+
+                let pointsOfInterest = [
+                    {
+                        lngLat: [-74.044606,40.689160],
+                        popUpHtml: "Statue of Libery",
+                    },
+                    {
+                        lngLat: [-74.041897,40.697689],
+                        popUpHtml: "Ellis Island",
+                    },
+                ]
+
+                pointsOfInterest.forEach((pointOfInterest) => {
+
+                    let popup = new mapboxgl.Popup({offset: 40}).setHTML(`<h3>${pointOfInterest.popUpHtml}</h3>`);
+
+                    new mapboxgl.Marker().setLngLat(pointOfInterest.lngLat).setPopup(popup).addTo(map);
+
+
+                });
+
+                $.getJSON('pizza_map.json', function(pizzaShops){
+                    pizzaShops.forEach((pizzaShop) => {
+                        new mapboxgl.Marker().setLngLat(pointOfInterest.lngLat).setPopup(popup).addTo(map);
+                    }); 
+                });
 
             </script>
 

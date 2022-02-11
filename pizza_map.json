@@ -1,0 +1,82 @@
+[
+ {
+   "pizzashop": "John's of Bleecker",
+   "longitude": -74.00298546,
+   "latitude": 40.73187071
+ },
+ {
+   "pizzashop": "Ben's Pizza",
+   "longitude": -74.000318,
+   "latitude": 40.73042742
+ },
+ {
+   "pizzashop": "Francesco's Pizza",
+   "longitude": -74.1446359,
+   "latitude": 41.0111869
+ },
+ {
+   "pizzashop": "Prince Street Pizza",
+   "longitude": -73.99454946,
+   "latitude": 40.72315309
+ },
+ {
+   "pizzashop": "Bleecker Street Pizza",
+   "longitude": -74.00340138,
+   "latitude": 40.73236059
+ },
+ {
+   "pizzashop": "Primo Basilico",
+   "longitude": -46.68483738,
+   "latitude": -23.57408143
+ },
+ {
+   "pizzashop": "Lombardi's",
+   "longitude": -73.99567372,
+   "latitude": 40.72157757
+ },
+ {
+   "pizzashop": "Domino's",
+   "longitude": -73.99616458,
+   "latitude": 40.73244919
+ },
+ {
+   "pizzashop": "Williamsburg Pizza",
+   "longitude": -73.95084,
+   "latitude": 40.70814
+ },
+ {
+   "pizzashop": "Johnny Napkins",
+   "longitude": -74.24670642,
+   "latitude": 40.68983725
+ },
+ {
+   "pizzashop": "Juliana's",
+   "longitude": -73.993445,
+   "latitude": 40.702719
+ },
+ {
+   "pizzashop": "99c pizza",
+   "longitude": -73.98744053,
+   "latitude": 40.75476544
+ },
+ {
+   "pizzashop": "Lucali",
+   "longitude": -74.000344,
+   "latitude": 40.681833
+ },
+ {
+   "pizzashop": "Little Italy Pizza III",
+   "longitude": -73.99241012,
+   "latitude": 40.73478774
+ },
+ {
+   "pizzashop": "Ogliastro",
+   "longitude": -73.963262,
+   "latitude": 40.674384
+ },
+ {
+   "pizzashop": "Brooklyn Pizza Crew",
+   "longitude": -73.950317,
+   "latitude": 40.672781
+ }
+]
