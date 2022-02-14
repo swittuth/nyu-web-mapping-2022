@@ -35,6 +35,22 @@ const geojson = {
     ]
 };
 
+const housejson = {
+    type: "HouseCollection",
+    locations: [
+        {
+            geoemtry: {
+                type: "Point",
+                coordinates: [-73.994020, 40.738150]
+            },
+            property: {
+                type: "Name",
+                description: "Current place staying"
+            }
+        }
+    ]
+}
+
 for (const feature of geojson.features) {
     // create a HTML element for each feature
     let el = document.createElement("div");
@@ -42,4 +58,11 @@ for (const feature of geojson.features) {
      
     // make a marker for each feature and add it to the map
     new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`)).addTo(map);
+}
+
+for (const location of housejson.locations){
+    let mark = document.createElement("div");
+    mark.className = "marker";
+
+    new mapboxgl.Marker().setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}).setHTML(`<h3>${locations.properties.type}</h3><p>${locations.properties.description}</p>`)).addTo(map);
 }
