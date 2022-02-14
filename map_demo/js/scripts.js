@@ -41,21 +41,21 @@ const housejson = {
         {
             geometry: {
                 type: "Point",
-                coordinates: [-73.994020, 40.738150]
+                coordinates: [-73.987221, 40.693710]
             },
             properties: {
-                type: "Name",
-                description: "Current place staying"
+                type: "School Name",
+                description: "NYU Tandon"
             }
         },
         {
             geometry: {
                 type: "Point",
-                coordinates: [-73.997253, 40.721020]
+                coordinates: [-73.953163, 40.811031]
             },
             properties: {
-                type: "Name",
-                description: "School dorm location"
+                type: "School Name",
+                description: "Columbia University"
             }
         }
     ]
