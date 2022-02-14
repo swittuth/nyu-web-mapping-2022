@@ -39,13 +39,23 @@ const housejson = {
     type: "HouseCollection",
     locations: [
         {
-            geoemtry: {
+            geometry: {
                 type: "Point",
                 coordinates: [-73.994020, 40.738150]
             },
-            property: {
+            properties: {
                 type: "Name",
                 description: "Current place staying"
+            }
+        },
+        {
+            geometry: {
+                type: "Point",
+                coordinates: [-73.997253, 40.721020]
+            },
+            properties: {
+                type: "Name",
+                description: "School dorm location"
             }
         }
     ]
@@ -64,5 +74,5 @@ for (const location of housejson.locations){
     let mark = document.createElement("div");
     mark.className = "marker";
 
-    new mapboxgl.Marker().setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}).setHTML(`<h3>${locations.properties.type}</h3><p>${locations.properties.description}</p>`)).addTo(map);
+    new mapboxgl.Marker().setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}).setHTML(`<h3>${location.properties.type}</h3><p>${location.properties.description}</p>`)).addTo(map);
 }
