@@ -1,78 +1,65 @@
 mapboxgl.accessToken = "pk.eyJ1Ijoic3dpdHR1dGgiLCJhIjoiY2t6aGZzcjZ1MDNucjJ1bnlpbGVjMHozNSJ9.wP4jf_xQ5-IDXtzRc2ECpA";
 
+const boundary = [[-74.000646,40.729271],[-73.994106,40.732401]];
+
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
-    center: [-96, 37.8],
-    zoom: 3
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-73.997376,40.730836],
+    zoom: 16,
+    maxBounds: boundary
 });
 
-const geojson = {
-    type: 'FeatureCollection',
-    features: [
-        {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [-77.032, 38.913]
-            },
-            properties: {
-                title: 'Location',
-                description: 'Washington, D.C.'
-            }
-        },
-        {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [-122.414, 37.776]
-            },
-            properties: {
-                title: 'Location',
-                description: 'San Francisco, California'
-            }
-        }
-    ]
-};
-
-const housejson = {
-    type: "HouseCollection",
-    locations: [
-        {
-            geometry: {
-                type: "Point",
-                coordinates: [-73.987221, 40.693710]
-            },
-            properties: {
-                type: "School Name",
-                description: "NYU Tandon"
-            }
-        },
-        {
-            geometry: {
-                type: "Point",
-                coordinates: [-73.953163, 40.811031]
-            },
-            properties: {
-                type: "School Name",
-                description: "Columbia University"
-            }
-        }
-    ]
-}
-
-for (const feature of geojson.features) {
-    // create a HTML element for each feature
-    let el = document.createElement("div");
-    el.className = "marker";
+map.on('load', () => {
+    // Insert the layer beneath any symbol layer.
+    const layers = map.getStyle().layers;
+    const labelLayerId = layers.find(
+    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+    ).id;
      
-    // make a marker for each feature and add it to the map
-    new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`)).addTo(map);
+    // The 'building' layer in the Mapbox Streets
+    // vector tileset contains building height data
+    // from OpenStreetMap.
+    map.addLayer(
+        {
+            'id': 'add-3d-buildings',
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['==', 'extrude', 'true'],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+            'fill-extrusion-color': '#aaa',
+     
+            // Use an 'interpolate' expression to
+            // add a smooth transition effect to
+            // the buildings as the user zooms in.
+            'fill-extrusion-height': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'height']],
+            'fill-extrusion-base': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'min_height']],'fill-extrusion-opacity': 0.6
+            }
+        },
+    labelLayerId
+    );
+});
+
+const nyubuildingjson = {
+    type: "NYU Building Location",
+    locations: [{
+        geometry: {
+            type: "Point",
+            coordinates: [-73.997017, 40.729660]
+            },
+        info: {
+            name: "NYU Bobst Library",
+            description: "Bobst Library has the most books in the world"
+            }
+        }
+    ]
 }
 
-for (const location of housejson.locations){
+for (const location of nyubuildingjson.locations){
     let mark = document.createElement("div");
     mark.className = "marker";
 
-    new mapboxgl.Marker().setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}).setHTML(`<h3>${location.properties.type}</h3><p>${location.properties.description}</p>`)).addTo(map);
+    new mapboxgl.Marker().setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25}).setHTML(`<h3>${location.info.name}</h3><p>${location.info.description}</p>`)).addTo(map);
 }
