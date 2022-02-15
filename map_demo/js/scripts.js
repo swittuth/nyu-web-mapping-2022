@@ -4,7 +4,7 @@ const boundary = [[-74.000646,40.729271],[-73.994106,40.732401]];
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/outdoors-v11',
     center: [-73.997376,40.730836],
     zoom: 16,
     maxBounds: boundary
@@ -44,17 +44,28 @@ map.on('load', () => {
 
 const nyubuildingjson = {
     type: "NYU Building Location",
-    locations: [{
-        geometry: {
-            type: "Point",
-            coordinates: [-73.997017, 40.729660]
+    locations: [
+        {
+            geometry: {
+                type: "Point",
+                coordinates: [-73.997017, 40.729660]
             },
-        info: {
-            name: "NYU Bobst Library",
-            description: "Bobst Library has the most books in the world"
+            info: {
+                name: "NYU Bobst Library",
+                description: "Bobst Library has the most books in the world"
+            }
+        },
+        {
+            geometry: {
+                type: "Point",
+                coordinates: [-73.997711, 40.730000]
+            },
+            info: {
+                name: "NYU Kimmel Center",
+                description: "Center that provides space and resources for students, faculty, staff, departments, alumni and community organizations."
             }
         }
-    ]
+        ]
 }
 
 for (const location of nyubuildingjson.locations){
