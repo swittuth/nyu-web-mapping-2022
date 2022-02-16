@@ -9,7 +9,7 @@ h3 {
 
 #popup {
     position: absolute;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Courier New', Courier, monospace;
     color: white;
     width: 24.7%;
     height: 100%;
@@ -21,17 +21,18 @@ h3 {
 #title-description {
     position: relative;
     text-align: center;
+    top: 20%;
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 #building-description {
     position: relative;
-    text-align: justify;
+    text-align: left;
     font-size: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
     top: 30%;
 }
 
