@@ -3,22 +3,76 @@ body {
     padding: 0;
 }
 
+h3 {
+    text-align: center;
+}
+
+#popup {
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 24.7%;
+    height: 100%;
+    border: 2px solid purple;
+}
+
+#title-description {
+    text-align: center;
+    font-size: 25px;
+}
+
 #map {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100%;
+    right: 0%;
+    width: 75%;
+}
+
+#button-container{
+    width: 74.9%;
+    right: 0%;
+    top:0;
+    position: absolute;
+    background-color: aquamarine;
+    border: 1px solid aqua;
+}
+
+button {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid coral;
+    background-color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    color: white;
+    background-color: coral;
+}
+
+#zoom-in {
+    position: relative;
+    margin-left: 40%;
+    text-align: center;
+}
+
+#fly-to-campus{
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .marker {
-    background-image: url("./mapbox-icon.png");
+    background-image: url("nyu_logo.png");
     background-size: cover;
-    width: 50px;
+    opacity: 50%;
+    width: 80px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 0%;
     cursor: pointer;
 }
 
-h3 {
-    text-align: center;
+.marker:hover {
+    opacity: 100%;
+    
 }

@@ -2,7 +2,7 @@
 <html lang='en'>
     <head>
         <meta charset='utf-8' />
-        <title>Marker Map for NYU Washing Square Park Campus</title>
+        <title>NYU Campus Explorer</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
@@ -11,7 +11,18 @@
     </head>
     <body>
 
+        <div id = "popup">
+            <h1 id = "title-description">NYU Campus Explorer</h1>
+            <p id = "building-description">Click on Markers to start exploring</p>
+        </div>
+
         <div id='map'></div>
+
+        <div id = "button-container">
+            <button id = "zoom-in">ZOOM IN</button>
+
+            <button id = "fly-to-campus">FLY TO BROOKLYN CAMPUS</button>
+        </div>
 
         <script src = "./js/scripts.js"></script>
 
