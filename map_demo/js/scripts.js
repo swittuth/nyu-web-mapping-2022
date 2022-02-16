@@ -4,9 +4,6 @@ fly_to_campus.addEventListener("click", fly_to_other_campus);
 const zoom_in = document.getElementById("zoom-in");
 zoom_in.addEventListener("click", zoom_in_campus);
 
-const title_description = document.getElementById("title-description");
-const building_description = document.getElementById("building-description");
-
 
 let atTandon = false;
 let zoom = false;
@@ -27,6 +24,26 @@ const map = new mapboxgl.Map({
     //maxBounds: wsp_boundary
 });
 
+const three_d_layer = {
+    'id': 'add-3d-buildings',
+    'source': 'composite',
+    'source-layer': 'building',
+    'filter': ['==', 'extrude', 'true'],
+    'type': 'fill-extrusion',
+    'minzoom': 15,
+    'paint': {
+        'fill-extrusion-color': '#aaa',
+        
+                // Use an 'interpolate' expression to
+                // add a smooth transition effect to
+                // the buildings as the user zooms in.
+        'fill-extrusion-height': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'height']],
+        'fill-extrusion-base': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'min_height']],
+        'fill-extrusion-opacity': 0.8
+    }
+
+}
+
 map.on('load', () => {
     // Insert the layer beneath any symbol layer.
     const layers = map.getStyle().layers;
@@ -38,25 +55,10 @@ map.on('load', () => {
     // vector tileset contains building height data
     // from OpenStreetMap.
     map.addLayer(
-        {
-            'id': 'add-3d-buildings',
-            'source': 'composite',
-            'source-layer': 'building',
-            'filter': ['==', 'extrude', 'true'],
-            'type': 'fill-extrusion',
-            'minzoom': 15,
-            'paint': {
-            'fill-extrusion-color': '#aaa',
-     
-            // Use an 'interpolate' expression to
-            // add a smooth transition effect to
-            // the buildings as the user zooms in.
-            'fill-extrusion-height': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'height']],
-            'fill-extrusion-base': ['interpolate',['linear'],['zoom'],15,0,15.05,['get', 'min_height']],'fill-extrusion-opacity': 0.6
-            }
-        },
-    labelLayerId
+        three_d_layer,
+        labelLayerId
     );
+
 });
 
 const nyubuildingjson = {
@@ -69,7 +71,7 @@ const nyubuildingjson = {
             },
             info: {
                 name: "NYU Bobst Library",
-                description: "Bobst Library has the most books in the world"
+                description: "The Elmer Holmes Bobst Library, often referred to as simply Bobst Library or Bobst, is the main library at New York University in Manhattan, New York City"
             }
         },
         {
@@ -112,16 +114,25 @@ const nyubuildingjson = {
                 description: "The Wunsch Building is a historic landmark located along MetroTech Commons as part of our Downtown Brooklyn Campus. The building currently is home to undergraduate and graduate admissions, as well as the Wasserman Center for Career Development."
             }
         }
-        
-        ]
+    ]
 }
 
+
+const title_description = document.getElementById("title-description");
+const building_description = document.getElementById("building-description");
+
+let marker;
 for (const location of nyubuildingjson.locations){
     const el = document.createElement("div");
     el.className = "marker";
 
-    new mapboxgl.Marker(el).setLngLat(location.geometry.coordinates).setPopup(new mapboxgl.Popup({offset: 25, anchor: "bottom"}).setHTML(`<h3>${location.info.name}</h3><p>${location.info.description}</p>`)).addTo(map);
+    marker = new mapboxgl.Marker(el).setLngLat(location.geometry.coordinates)./*setPopup(new mapboxgl.Popup({offset: 25, anchor: "bottom"}).setHTML(`<h3>${location.info.name}</h3><p>${location.info.description}</p>`)).*/addTo(map);
+    marker.getElement().addEventListener("click", () => {
+        title_description.innerHTML = location.info.name;
+        building_description.innerHTML = location.info.description;
+    });
 }
+
 
 function fly_to_other_campus() {
 

@@ -10,14 +10,29 @@ h3 {
 #popup {
     position: absolute;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
     width: 24.7%;
     height: 100%;
-    border: 2px solid purple;
+    border: 2px solid violet;
+    background-color: purple;
+    opacity: 50;
 }
 
 #title-description {
+    position: relative;
     text-align: center;
-    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#building-description {
+    position: relative;
+    text-align: justify;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    top: 30%;
 }
 
 #map {
@@ -33,8 +48,8 @@ h3 {
     right: 0%;
     top:0;
     position: absolute;
-    background-color: aquamarine;
-    border: 1px solid aqua;
+    background-color: purple;
+    border: 1px solid violet;
 }
 
 button {
